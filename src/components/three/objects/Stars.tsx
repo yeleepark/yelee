@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 
 import { useFrame } from "@react-three/fiber";
-import { Points } from "three";
+import { Points, BufferAttribute, BufferGeometry } from "three";
 
 // 별 위치 생성 함수 (컴포넌트 외부)
 function generateStarPositions() {
@@ -35,6 +35,13 @@ const starPositions = generateStarPositions();
 export default function Stars() {
   const pointsRef = useRef<Points>(null);
 
+  // BufferGeometry 생성
+  const geometry = useMemo(() => {
+    const geometry = new BufferGeometry();
+    geometry.setAttribute("position", new BufferAttribute(starPositions, 3));
+    return geometry;
+  }, []);
+
   // 느린 회전 애니메이션
   useFrame((state, delta) => {
     if (pointsRef.current) {
@@ -44,15 +51,7 @@ export default function Stars() {
   });
 
   return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={starPositions.length / 3}
-          array={starPositions}
-          itemSize={3}
-        />
-      </bufferGeometry>
+    <points ref={pointsRef} geometry={geometry}>
       <pointsMaterial
         size={0.15}
         color="#ffffff"
