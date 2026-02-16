@@ -1,4 +1,4 @@
-export default {
+const config = {
   extends: ["@commitlint/config-conventional"],
   rules: {
     // 타입은 영문 소문자로
@@ -34,3 +34,5 @@ export default {
     "type-empty": [2, "never"],
   },
 };
+
+export default config;
