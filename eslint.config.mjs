@@ -1,8 +1,8 @@
+import tseslint from "@typescript-eslint/eslint-plugin";
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 import prettier from "eslint-config-prettier";
-import tseslint from "@typescript-eslint/eslint-plugin";
 import importX from "eslint-plugin-import-x";
 
 const eslintConfig = defineConfig([

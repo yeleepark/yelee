@@ -16,6 +16,7 @@ Next.js 16 기반 포트폴리오 웹사이트 스타터 템플릿입니다.
 - **코드 포맷터**: Prettier (+ prettier-plugin-tailwindcss)
 - **린터**: ESLint 9 (Flat Config)
 - **Import 정렬**: eslint-plugin-import-x
+- **커밋 검증**: Commitlint + Husky
 - **패키지 매니저**: pnpm
 
 ## 시작하기
@@ -108,6 +109,42 @@ yeleepark/
 - 탭 너비: 2칸
 - 최대 라인 길이: 80자
 - Tailwind CSS 클래스 자동 정렬
+
+## Git 커밋 컨벤션
+
+이 프로젝트는 일관된 커밋 히스토리를 위해 Conventional Commits 규칙을 따릅니다.
+
+### 커밋 메시지 형식
+
+```
+<타입>: <제목>
+
+<본문> (선택사항)
+```
+
+### 타입 종류
+
+- `feat`: 새로운 기능 추가
+- `fix`: 버그 수정
+- `docs`: 문서 수정
+- `style`: 코드 포맷팅 (기능 변경 없음)
+- `refactor`: 코드 리팩토링
+- `test`: 테스트 코드
+- `chore`: 빌드, 패키지 설정 등
+- `perf`: 성능 개선
+- `ci`: CI/CD 설정
+
+### 예시
+
+```bash
+feat: 다크모드 기능 추가
+fix: 로그인 버튼 클릭 오류 수정
+docs: README 설치 가이드 추가
+```
+
+자세한 내용은 [Git 컨벤션 가이드](.github/GIT_CONVENTION.md)를 참고하세요.
+
+**참고**: 커밋 시 Husky가 자동으로 메시지를 검증합니다.
 
 ## 배포
 
