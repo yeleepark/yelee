@@ -4,9 +4,7 @@ import dynamic from "next/dynamic";
 
 const LazyCanvas = dynamic(() => import("./LazyCanvas"), {
   ssr: false,
-  loading: () => (
-    <div className="from-nature-highlight to-nature-secondary fixed inset-0 -z-10 bg-gradient-to-b" />
-  ),
+  loading: () => <div className="fixed inset-0 -z-10 bg-black" />,
 });
 
 /**
