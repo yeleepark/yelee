@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Single-page portfolio website built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, and React Query.
+Three.js 기반 포트폴리오 웹사이트 개발 환경. Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, React Three Fiber를 사용합니다.
 
 ## Commands
 
@@ -15,31 +15,42 @@ Single-page portfolio website built with Next.js 16 (App Router), React 19, Type
 
 ## Architecture
 
-- **App Router** with Server Components by default; Client Components (`"use client"`) used for interactive parts (Header, Contact, AnimatedSection)
-- **Single-page layout**: `src/app/page.tsx` composes section components, each with a scroll anchor ID (#home, #about, #skills, #projects, #experience, #contact)
-- **Static data**: All profile, skills, projects, and experience content lives in `src/data/profile.ts` — this is the primary file to edit for content changes
+- **App Router** with Server Components by default; Client Components (`"use client"`) used for Three.js components
 - **Path alias**: `@/*` maps to `./src/*`
+- **Dynamic imports**: Three.js components use `next/dynamic` with `ssr: false` for client-side rendering
 
-## Key Directories
+## Project Structure
 
-- `src/components/sections/` — Page sections (Hero, About, Skills, Projects, Experience, Contact)
-- `src/components/ui/` — Reusable components (AnimatedSection, Button, Card, SectionTitle)
-- `src/components/layout/` — Header and Footer
-- `src/hooks/` — Custom hooks (useContact mutation for form submission)
-- `src/lib/` — Axios instance and React Query client config
-- `src/providers/` — QueryProvider wrapper (client component)
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with Geist fonts
+│   ├── page.tsx            # Main page with ThreeBackground
+│   └── globals.css         # Global styles with CSS variables
+└── components/
+    └── three/
+        ├── ThreeBackground.tsx  # Main 3D background wrapper
+        ├── LazyCanvas.tsx       # Canvas setup with performance config
+        └── common/
+            ├── SceneSetup.tsx   # Basic scene setup
+            └── Lights.tsx       # Lighting configuration
+```
+
+## Three.js Setup
+
+- **React Three Fiber** (`@react-three/fiber`): React renderer for Three.js
+- **@react-three/drei**: Helper components and abstractions
+- **@react-three/postprocessing**: Post-processing effects
+- **Performance config**:
+  - Camera: position [0, 0, 10], fov 50
+  - DPR: [1, 2] for retina displays
+  - Power preference: high-performance
 
 ## Styling
 
 - Tailwind CSS v4 with `@tailwindcss/postcss`
-- Theme colors defined as CSS custom properties in `src/app/globals.css` (primary: #4f46e5)
-- Responsive breakpoint: `md:` for tablet/desktop layouts
-
-## Data Fetching & State
-
-- React Query for server state; configured with 5-min stale time, no window-focus refetch
-- Axios instance reads `NEXT_PUBLIC_API_URL` env variable for API base URL
-- Contact form uses `useMutation` hook in `src/hooks/useContact.ts`
+- Theme colors defined as CSS custom properties in `src/app/globals.css`
+- Background color: #f4e4d7 (cream/beige)
 
 ## Git Conventions
 
