@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+Next.js 16 기반 포트폴리오 웹사이트 스타터 템플릿입니다.
 
-First, run the development server:
+## 기술 스택
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animation**: Framer Motion
+- **State Management**: @tanstack/react-query
+- **HTTP Client**: Axios
+
+## 개발 도구
+
+- **코드 포맷터**: Prettier (+ prettier-plugin-tailwindcss)
+- **린터**: ESLint 9 (Flat Config)
+- **Import 정렬**: eslint-plugin-import-x
+- **패키지 매니저**: pnpm
+
+## 시작하기
+
+### 설치
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 개발 서버 실행
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인하세요.
 
-## Learn More
+### 빌드
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 프로덕션 실행
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm start
+```
 
-## Deploy on Vercel
+## 사용 가능한 스크립트
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# 개발 서버 실행
+pnpm dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 프로덕션 빌드
+pnpm build
+
+# 프로덕션 서버 실행
+pnpm start
+
+# ESLint 검사
+pnpm lint
+
+# ESLint 자동 수정
+pnpm lint:fix
+
+# Prettier 포맷팅
+pnpm format
+
+# Prettier 검사 (CI용)
+pnpm format:check
+```
+
+## 프로젝트 구조
+
+```
+yeleepark/
+├── public/                  # 정적 파일
+├── src/
+│   └── app/
+│       ├── layout.tsx       # 루트 레이아웃
+│       ├── page.tsx         # 메인 페이지
+│       ├── globals.css      # 글로벌 스타일 (Tailwind)
+│       └── favicon.ico
+├── .prettierrc              # Prettier 설정
+├── .prettierignore          # Prettier 제외 파일
+├── eslint.config.mjs        # ESLint 설정 (Flat Config)
+├── tailwind.config.ts       # Tailwind CSS 설정
+├── next.config.ts           # Next.js 설정
+├── tsconfig.json            # TypeScript 설정
+└── package.json
+```
+
+## ESLint 설정
+
+다음 규칙이 적용되어 있습니다:
+
+- TypeScript 타입 체크
+- React Hooks 규칙
+- Import 자동 정렬 (React/Next.js 우선)
+- 사용하지 않는 변수 감지
+- console.log 경고 (warn, error는 허용)
+
+## Prettier 설정
+
+- 세미콜론 사용
+- 더블 쿼트 사용
+- 탭 너비: 2칸
+- 최대 라인 길이: 80자
+- Tailwind CSS 클래스 자동 정렬
+
+## 배포
+
+### Vercel (권장)
+
+1. GitHub에 코드를 푸시합니다.
+2. [Vercel](https://vercel.com)에 로그인합니다.
+3. "New Project"를 클릭하고 GitHub 저장소를 선택합니다.
+4. 자동으로 배포가 시작됩니다.
+
+### 기타 플랫폼
+
+- **Netlify**: `pnpm build` 후 `.next` 폴더 배포
+- **AWS Amplify**: Next.js 프리셋 선택
+
+## 라이선스
+
+MIT License
